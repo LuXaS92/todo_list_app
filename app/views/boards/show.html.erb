@@ -1,0 +1,29 @@
+<h1><%= @board.title %></h1>
+
+<%= link_to 'Edit Board', edit_board_path(@board), class: 'btn btn-secondary mb-3' %>
+<%= link_to 'Back to Boards', boards_path, class: 'btn btn-outline-secondary mb-3' %>
+
+<div class="row">
+  <% @steps.each do |step| %>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <%= step.title %>
+          <%= link_to 'Edit', edit_board_step_path(@board, step), class: 'btn btn-sm btn-outline-secondary float-end' %>
+        </div>
+        <div class="card-body">
+          <% step.tasks.each do |task| %>
+            <div class="mb-2">
+              <%= task.title %>
+              <%= link_to 'Edit', edit_board_step_task_path(@board, step, task), class: 'btn btn-sm btn-outline-secondary' %>
+            </div>
+          <% end %>
+          <%= link_to 'Add Task', new_board_step_task_path(@board, step), class: 'btn btn-sm btn-primary' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="col-md-4 mb-4">
+    <%= link_to 'Add Step', new_board_step_path(@board), class: 'btn btn-lg btn-outline-primary w-100 h-100' %>
+  </div>
+</div>

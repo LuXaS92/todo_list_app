@@ -1,0 +1,21 @@
+<%= form_with(model: board, local: true) do |form| %>
+  <% if board.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(board.errors.count, "error") %> prohibited this board from being saved:</h2>
+      <ul>
+        <% board.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: 'form-label' %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
