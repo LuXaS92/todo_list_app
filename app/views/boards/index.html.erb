@@ -1,21 +1,25 @@
-<h1>My Boards</h1>
+<div class="boards-index">
+  <h1 class="mb-4">My Boards</h1>
 
-<%= link_to 'New Board', new_board_path, class: 'btn btn-primary mb-3' %>
+  <%= link_to 'New Board', new_board_path, class: 'btn btn-primary mb-4' %>
 
-<div class="row">
-  <% @boards.each do |board| %>
-    <div class="col-md-4 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title"><%= board.title %></h5>
-          <p class="card-text">
-            <%= pluralize(board.steps.count, 'step') %>
-          </p>
-          <%= link_to 'View', board, class: 'btn btn-sm btn-outline-primary' %>
-          <%= link_to 'Edit', edit_board_path(board), class: 'btn btn-sm btn-outline-secondary' %>
-          <%= link_to 'Delete', board, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
+  <div class="row">
+    <% @boards.each do |board| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title"><%= board.title %></h5>
+            <p class="card-text text-muted">
+              <%= pluralize(board.steps.count, 'step') %>
+            </p>
+          </div>
+          <div class="card-footer bg-transparent">
+            <%= link_to 'View', board, class: 'btn btn-sm btn-outline-primary' %>
+            <%= link_to 'Edit', edit_board_path(board), class: 'btn btn-sm btn-outline-secondary' %>
+            <%= link_to 'Delete', board_path(board), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

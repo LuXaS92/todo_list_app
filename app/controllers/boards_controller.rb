@@ -6,7 +6,6 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @steps = @board.steps.order(:position)
   end
 
   def new
@@ -34,6 +33,7 @@ class BoardsController < ApplicationController
   end
 
   def destroy
+    @board = Board.find(params[:id])
     @board.destroy
     redirect_to boards_url, notice: 'Board was successfully destroyed.'
   end

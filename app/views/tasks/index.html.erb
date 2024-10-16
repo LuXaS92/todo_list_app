@@ -1,0 +1,40 @@
+<h1>Tarefas</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Descrição</th>
+      <th>Board</th>
+      <th>Step</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr id="task_<%= task.id %>">
+        <td><%= task.title %></td>
+        <td><%= truncate(task.description, length: 50) %></td>
+        <td><%= task.step.board.title %></td>
+        <td><%= task.step.title %></td>
+        <td>
+          <%= link_to 'Ver', task_path(task), class: 'btn btn-sm btn-info' %>
+          <%= link_to 'Editar', edit_task_path(task), class: 'btn btn-sm btn-warning' %>
+          <%= link_to 'Deletar', task_path(task), 
+                      method: :delete, 
+                      data: { confirm: 'Tem certeza que deseja deletar esta tarefa?' }, 
+                      remote: true, 
+                      class: 'btn btn-sm btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Nova Tarefa', new_task_path, class: 'btn btn-primary' %>
+
+<script>
+  $(document).on('ajax:success', 'a[data-method="delete"]', function() {
+    $(this).closest('tr').fadeOut();
+  });
+</script>

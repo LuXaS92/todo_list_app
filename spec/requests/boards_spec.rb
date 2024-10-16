@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Boards", type: :request do
   describe "GET /index" do
     it "returns http success" do
-      get "/boards/index"
+      get "/boards"
       expect(response).to have_http_status(:success)
     end
   end

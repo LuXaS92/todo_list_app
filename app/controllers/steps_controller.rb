@@ -1,6 +1,9 @@
 class StepsController < ApplicationController
   before_action :set_board
-  before_action :set_step, only: [:edit, :update, :destroy]
+  before_action :set_step, only: [:show, :edit, :update, :destroy]
+
+  def show
+  end
 
   def new
     @step = @board.steps.new
@@ -42,6 +45,6 @@ class StepsController < ApplicationController
   end
 
   def step_params
-    params.require(:step).permit(:title, :position)
+    params.require(:step).permit(:title)
   end
 end

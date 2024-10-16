@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root 'boards#index'
-  
+
   resources :boards do
-    resources :steps, except: [:index, :show] do
-      resources :tasks, except: [:index, :show]
+    resources :steps do
+      resources :tasks
     end
   end
 end
