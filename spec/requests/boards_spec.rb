@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Boards", type: :request do
-  describe "GET /index" do
+  describe "GET /show" do
     it "returns http success" do
-      get "/boards"
+      board = Board.create!(title: "Test Board")
+      get board_path(board)
       expect(response).to have_http_status(:success)
     end
   end
